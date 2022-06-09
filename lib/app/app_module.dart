@@ -23,6 +23,7 @@ class AppModule extends Module {
             (i) => ProjectServiceImpl(projectRepository: i())),
       ];
 
+
   @override
   List<ModularRoute> get routes => [
         ChildRoute('/', child: (context, args) => const SplashPage()),
