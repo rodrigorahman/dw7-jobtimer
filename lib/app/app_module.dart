@@ -15,8 +15,8 @@ import 'package:job_timer/app/services/projects/project_service_impl.dart';
 class AppModule extends Module {
   @override
   List<Bind> get binds => [
-        Bind.lazySingleton<AuthService>((i) => AuthServiceImpl()),
         Bind.lazySingleton<Database>((i) => DatabaseImpl()),
+        Bind.lazySingleton<AuthService>((i) => AuthServiceImpl(database: i())),
         Bind.lazySingleton<ProjectRepository>(
             (i) => ProjectRepositoryImpl(database: i())),
         Bind.lazySingleton<ProjectService>(

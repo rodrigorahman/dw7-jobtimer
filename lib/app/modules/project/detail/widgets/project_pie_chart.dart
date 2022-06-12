@@ -14,6 +14,44 @@ class ProjectPieChart extends StatelessWidget {
     final theme = Theme.of(context);
 
     final residual = (projectEstimate - totalTask);
+    var charData = <PieChartSectionData>[];
+
+    //CodeReview
+    if (residual > 0) {
+      charData = [
+        PieChartSectionData(
+          value: totalTask.toDouble(),
+          color: theme.primaryColor,
+          showTitle: true,
+          title: '${totalTask}h',
+          titleStyle: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        PieChartSectionData(
+          value: residual.toDouble(),
+          color: theme.primaryColorLight,
+          showTitle: true,
+          title: '${residual}h',
+          titleStyle: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        )
+      ];
+    }else{
+      charData = [
+        PieChartSectionData(
+          value: totalTask.toDouble(),
+          color: Colors.red,
+          showTitle: true,
+          title: '${totalTask}h',
+          titleStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          
+        )
+      ];
+    }
 
     return SizedBox(
       width: 200,
@@ -21,28 +59,7 @@ class ProjectPieChart extends StatelessWidget {
       child: Stack(
         fit: StackFit.loose,
         children: [
-          PieChart(PieChartData(sections: [
-            PieChartSectionData(
-              value: totalTask.toDouble(),
-              color: theme.primaryColor,
-              showTitle: true,
-              title: '${totalTask}h',
-              titleStyle: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            PieChartSectionData(
-              value: residual.toDouble(),
-              color: theme.primaryColorLight,
-              showTitle: true,
-              title: '${residual}h',
-              titleStyle: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            )
-          ])),
+          PieChart(PieChartData(sections: charData)),
           Align(
             alignment: Alignment.center,
             child: Text(

@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,30 +18,28 @@ class ButtonWithLoader<B extends StateStreamable<S>, S>
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      child: BlocSelector<B, S, bool>(
-        bloc: bloc,
-        selector: selector,
-        builder: (context, showLoading) {
-          if (!showLoading) {
-            return Text(label);
-          }
-
-          return Stack(
-            alignment: Alignment.center,
-            children: [
-              Text(label),
-              const Align(
-                alignment: Alignment.centerRight,
+    return BlocSelector<B, S, bool>(
+      bloc: bloc,
+      selector: selector,
+      builder: (context, isLoading) {
+        return ElevatedButton(
+          onPressed: isLoading ? null : onPressed,
+          style: !isLoading
+              ? ElevatedButton.styleFrom()
+              : ElevatedButton.styleFrom(
+                  shape: const CircleBorder(),
+                  onSurface: Colors.blue,
+                ),
+          child: Visibility(
+              visible: !isLoading,
+              replacement: const Center(
                 child: CircularProgressIndicator.adaptive(
                   backgroundColor: Colors.white,
                 ),
-              )
-            ],
-          );
-        },
-      ),
+              ),
+              child: FittedBox(child: Text(label))),
+        );
+      },
     );
   }
 }
