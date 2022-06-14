@@ -7,7 +7,7 @@ class HomeModule extends Module {
   @override
   List<Bind<Object>> get binds => [
         BlocBind.lazySingleton(
-            (i) => HomeController(projectService: i())) // AppModule
+            (i) => HomeController(authService: i(), projectService: i())) // AppModule
       ];
 
   @override

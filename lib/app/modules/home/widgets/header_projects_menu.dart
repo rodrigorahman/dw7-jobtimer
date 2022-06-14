@@ -28,7 +28,10 @@ class HeaderProjectsMenu extends SliverPersistentHeaderDelegate {
                   value: ProjectStatus.em_andamento,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
                       ),
                       contentPadding: const EdgeInsets.all(10),
                       isCollapsed: true),

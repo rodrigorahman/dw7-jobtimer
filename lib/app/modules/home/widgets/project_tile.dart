@@ -85,7 +85,7 @@ class _ProjectProgress extends StatelessWidget {
             child: LinearProgressIndicator(
               value: percent,
               backgroundColor: Colors.grey[400]!,
-              color: Theme.of(context).primaryColor,
+              color: percent > 1 ? Colors.red : Theme.of(context).primaryColor,
             ),
           ),
           Padding(

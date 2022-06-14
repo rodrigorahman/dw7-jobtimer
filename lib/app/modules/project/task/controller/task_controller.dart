@@ -21,6 +21,7 @@ class TaskController extends Cubit<TaskStatus> {
     try {
       emit(TaskStatus.loading);
       final task = ProjectTaskModel(name: name, duration: duration);
+      await Future.delayed(Duration(seconds: 2));
       await _projectService.addTask(_projectModel.id!, task);
       emit(TaskStatus.success);
     } catch (e, s) {
